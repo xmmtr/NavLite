@@ -1,0 +1,7 @@
+# 复制本文件为 signing.properties（已 gitignore，不会入库）并填入你自己的签名信息。
+# 缺少该文件时：debug 构建使用默认调试签名，可直接安装体验；release 构建不签名。
+# 路径相对工程根目录，建议用正斜杠。
+storeFile=path/to/your.keystore
+storePassword=your-store-password
+keyAlias=your-alias
+keyPassword=your-key-password

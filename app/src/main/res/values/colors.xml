@@ -1,0 +1,9 @@
+<resources>
+    <color name="page_bg">#FFF7F7F5</color>
+    <color name="navi_bg">#FF101010</color>
+    <color name="accent">#FF2E7D32</color>
+    <color name="text_main">#FF212121</color>
+    <color name="text_sub">#FF757575</color>
+    <color name="field_bg">#FFFFFFFF</color>
+    <color name="shortcut_bg">#FFE8F5E9</color>
+</resources>

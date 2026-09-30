@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M1.13 A4：方案卡标签 chip（蓝系实底白字，小圆角） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FF1A73E8" />
+    <corners android:radius="6dp" />
+</shape>

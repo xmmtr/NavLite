@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textColor="@color/text_main"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/settings_key_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/settings_key_label"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/key_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_field"
+            android:hint="@string/settings_key_hint"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:padding="12dp"
+            android:textColor="@color/text_main"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/key_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_sub"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/key_test"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_shortcut"
+            android:text="@string/settings_key_test"
+            android:textColor="@color/accent"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/settings_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_note"
+            android:textColor="@color/text_sub"
+            android:textSize="12sp" />
+
+        <!-- M1.9 通用设置（R16）：昼夜模式 / 路况显示 / 算路偏好（R18）。
+             地图文字大小跟随系统：SDK 实查无对应接口（AMap/UiSettings/AMapNaviViewOptions 均无），按卡面口径如实标注跳过 -->
+        <TextView
+            android:id="@+id/settings_general_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_general_title"
+            android:textColor="@color/text_main"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/daynight_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_daynight"
+                android:textColor="@color/text_main"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/daynight_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/traffic_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_traffic"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/strategy_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_strategy"
+                android:textColor="@color/text_main"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/strategy_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- M1.10 R16 完整清单（§2.8 本期档）：导航朝向 / 3D / 手势 / 常亮 / 车道 / 路口 / 电子眼 / 指南针 / 播报 -->
+        <LinearLayout
+            android:id="@+id/orientation_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_navi_orientation"
+                android:textColor="@color/text_main"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/orientation_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/tilt3d_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_tilt3d"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/tiltgesture_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_tiltgesture"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/screenbright_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_screenbright"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/laneinfo_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_laneinfo"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/crossshow_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_crossshow"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/camerabubble_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_camerabubble"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/compass_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_compass"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/broadcast_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_broadcast"
+                android:textColor="@color/text_main"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/broadcast_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- §2.8：地图文字大小 SDK 无此能力（M1.9 javap 已实锤），如实标注不可点 -->
+        <LinearLayout
+            android:id="@+id/textsize_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_textsize"
+                android:textColor="@color/text_sub"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_textsize_unsupported"
+                android:textColor="@color/text_sub"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- M1.14 R25②/B2：语言=单个按钮点击循环切换（中文↔English），右列显示当前值；不做并排双按钮 -->
+        <LinearLayout
+            android:id="@+id/lang_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_language"
+                android:textColor="@color/text_main"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/lang_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- M1.10 R17 重写：搜索框位置两档（顶部默认/底部），主页地图上即时重排 -->
+        <TextView
+            android:id="@+id/settings_mainui_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_mainui_title"
+            android:textColor="@color/text_main"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/search_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_search_pos"
+                android:textColor="@color/text_main"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/search_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- M1.11 默认拍板 19：首页顶部小按钮排取消后，巡航入口收进设置页（链路沿用 M1.10） -->
+        <TextView
+            android:id="@+id/cruise_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/settings_cruise_desc"
+            android:textColor="@color/text_sub"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/cruise_button"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_shortcut"
+            android:text="@string/settings_cruise_button"
+            android:textColor="@color/accent"
+            android:textSize="15sp" />
+
+        <!-- M1.6 位置管理（R14）：家/公司固定项 + 自定义位置列表（≤10） -->
+        <TextView
+            android:id="@+id/settings_places_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_places_title"
+            android:textColor="@color/text_main"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/home_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/text_main"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/home_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_shortcut"
+                android:minWidth="0dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/settings_poi_set"
+                android:textColor="@color/accent"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/home_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/bg_field"
+                android:minWidth="0dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/settings_poi_clear"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/company_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/text_main"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/company_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_shortcut"
+                android:minWidth="0dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/settings_poi_set"
+                android:textColor="@color/accent"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/company_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/bg_field"
+                android:minWidth="0dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/settings_poi_clear"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/places_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/place_add"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_shortcut"
+            android:text="@string/settings_add_place"
+            android:textColor="@color/accent"
+            android:textSize="15sp" />
+
+        <!-- M1.6 历史记录（R13） -->
+        <TextView
+            android:id="@+id/settings_data_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_local_title"
+            android:textColor="@color/text_main"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/history_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/settings_history_title"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/history_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_sub"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/history_clear"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_field"
+            android:text="@string/settings_clear_history"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/simulate_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_simulate"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/mute_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/settings_mute"
+            android:textColor="@color/text_main"
+            android:textSize="15sp" />
+
+        <!-- M1.11 默认拍板 19：首页「关于」弹窗取消，状态自检收进设置页 -->
+        <TextView
+            android:id="@+id/settings_about_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_about_title"
+            android:textColor="@color/text_main"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/about_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_sub"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/about_tts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_sub"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/settings_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/text_sub"
+            android:textSize="13sp" />
+    </LinearLayout>
+</ScrollView>

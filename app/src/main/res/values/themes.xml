@@ -1,0 +1,10 @@
+<resources>
+    <style name="Theme.NavLite" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/page_bg</item>
+        <item name="android:colorAccent">@color/accent</item>
+    </style>
+
+    <style name="Theme.NavLite.Navi" parent="Theme.NavLite">
+        <item name="android:windowBackground">@color/navi_bg</item>
+    </style>
+</resources>

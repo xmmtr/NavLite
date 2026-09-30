@@ -1,0 +1,73 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+// v1.1：Key 改为运行时方案（设置页粘贴 → MapsInitializer.setApiKey），
+// 此处不再读 local.properties 的 AMAP_KEY，也不再用 manifestPlaceholders / BuildConfig 注入；
+// local.properties 只保留 sdk.dir，仓库与 APK 内零 Key 字面量。
+
+// 签名信息从工程根 signing.properties 读取（该文件已 gitignore，模板见 signing.properties.example）；
+// 文件缺失时不配置签名（debug 走默认调试签名，release 不签名），fork 者请自建签名文件，
+// 也可直接构建安装 debug 包体验。Properties 默认按 ISO-8859-1 解码，中文路径必须用 UTF-8 Reader 读。
+def signingProps = new Properties()
+def signingFile = rootProject.file('signing.properties')
+if (signingFile.exists()) {
+    signingFile.withReader('UTF-8') { signingProps.load(it) }
+}
+def hasSigning = signingProps.containsKey('storeFile')
+
+android {
+    namespace 'com.xmmtr.navlite'
+    compileSdkVersion 33
+    buildToolsVersion '34.0.0'
+
+    defaultConfig {
+        applicationId 'com.xmmtr.navlite'
+        minSdkVersion 24
+        targetSdkVersion 33
+        versionCode 11
+        versionName '1.4.4'
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    signingConfigs {
+        navlite {
+            if (hasSigning) {
+                storeFile rootProject.file(signingProps['storeFile'])
+                storePassword signingProps['storePassword']
+                keyAlias signingProps['keyAlias']
+                keyPassword signingProps['keyPassword']
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            if (hasSigning) signingConfig signingConfigs.navlite
+        }
+        release {
+            if (hasSigning) signingConfig signingConfigs.navlite
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // 官方合包（导航+3D地图+定位+搜索）。不用 navi-3dmap + search 两包并装：
+    // 实测 checkDebugDuplicateClasses 报 com.amap.apis.utils.core.api.AMapUtilCoreApi / NetProxy 重复类，两包各自内置同一套 utils-core。
+    implementation 'com.amap.api:navi-3dmap-location-search:10.0.800_3dmap10.0.800_loc6.4.5_sea9.7.2'
+}

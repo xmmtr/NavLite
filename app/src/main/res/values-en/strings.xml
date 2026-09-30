@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M1.14 B4：values-en 全量补齐（待拍板 #18 转正）——与 values/strings.xml 逐键对应、占位符一致。
+     唯一有意的"中文残留"= language_zh 的值「中文」：语言名按各语言自称显示，属国际惯例不是漏译。 -->
+<resources>
+    <string name="app_name">NavLite</string>
+
+    <string name="hint_destination">Enter destination</string>
+    <string name="start_navi">Start navigation</string>
+    <string name="shortcut_home">Home</string>
+    <string name="shortcut_company">Work</string>
+    <string name="voice_on">Voice on</string>
+    <string name="voice_off">Muted</string>
+    <string name="about">About</string>
+    <string name="settings">Settings</string>
+
+    <string name="tip_input_keyword">Enter or choose a destination first</string>
+    <string name="tip_no_key">No AMap Key configured. Opening Settings — paste yours and try again</string>
+    <string name="tip_need_location">Location permission not granted: “My location” cannot be used as the start point.</string>
+    <string name="tip_locating">Getting your location…</string>
+    <string name="tip_locate_timeout">Location timed out: make sure system Location is on; indoors, join Wi-Fi or move near a window</string>
+    <string name="tip_locate_failed">Location failed (code %1$d). Check system location and network, then retry</string>
+    <string name="location_service_title">Location service required</string>
+    <string name="location_service_msg">Routing starts from your current position. The system location service looks to be off — open system settings, turn on “Location”, then come back to this page and retry.</string>
+    <string name="location_go_settings">Open settings</string>
+    <string name="location_after_settings">Turn on “Location”, return to this page and tap again</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="tip_location_unresolved">Start location not ready: indoors join Wi-Fi, or wait a moment in the open.</string>
+    <string name="tip_search_failed">Search failed (code %1$d). Check the network or retry later</string>
+    <string name="tip_no_home">No “Home” address set yet — long-press this button to set it</string>
+    <string name="tip_no_company">No “Work” address set yet — long-press this button to set it</string>
+    <string name="tip_saved_home">“Home” set to %1$s</string>
+    <string name="tip_saved_company">“Work” set to %1$s</string>
+    <string name="title_set_home">Set the “Home” address</string>
+    <string name="title_set_company">Set the “Work” address</string>
+    <string name="tip_searching">Searching…</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_key_label">AMap Key</string>
+    <string name="settings_key_hint">Paste the Key you applied for on the AMap Open Platform (32 characters)</string>
+    <string name="settings_key_test">Save and test Key</string>
+    <string name="settings_key_configured">Status: configured</string>
+    <string name="settings_key_missing">Status: not configured (search and navigation unavailable)</string>
+    <string name="settings_testing">Testing Key…</string>
+    <string name="settings_key_ok">✅ Key valid</string>
+    <string name="settings_key_ok_toast">Key is valid — saved and applied</string>
+    <string name="settings_key_bad">❌ Key rejected (%1$s)</string>
+    <string name="settings_key_bad_toast">The Key failed the test. Check it and paste it again</string>
+    <string name="settings_key_untested">⚠️ Cannot confirm (code %1$d). Check the network and test again</string>
+    <string name="settings_key_saved">Saved</string>
+    <string name="settings_key_empty">Paste a Key first</string>
+    <string name="settings_key_suspect">Note: an AMap Key is usually 32 characters — make sure you pasted all of it</string>
+    <string name="settings_simulate">Simulated navigation (for acceptance testing)</string>
+    <string name="settings_mute">Mute voice guidance</string>
+    <string name="settings_note">The Key is stored only on this device and never uploaded. You can apply for one free on the AMap Open Platform (personal identity verification; the non-commercial quota is generous). If navigation still reports a Key error, close the app completely and open it again.</string>
+
+    <string name="about_dialog_title">About NavLite</string>
+    <string name="about_version">Version 1.4.4 · personal use, non-commercial · no ads · open source</string>
+    <string name="settings_hint_move">The simulated-navigation switch has moved to Settings</string>
+    <string name="about_key_ok">AMap Key: configured</string>
+    <string name="about_key_missing">AMap Key: not configured (paste it in Settings)</string>
+    <string name="about_tts_ok">System voice engine: available (Chinese)</string>
+    <string name="about_tts_bad">System voice engine: no Chinese voice available — check the phone’s text-to-speech settings</string>
+    <string name="about_close">Close</string>
+
+    <string name="navi_calculating">Planning the route…</string>
+    <string name="navi_failed">Route planning failed (code %1$d)</string>
+    <string name="navi_yaw">Off route — replanning…</string>
+    <string name="navi_arrived">You have arrived at your destination</string>
+
+    <string name="navi_preview_unnamed">Unnamed destination</string>
+    <string name="navi_preview_summary">%1$s · about %2$d min</string>
+    <string name="navi_preview_meters">%1$d m</string>
+    <string name="navi_preview_time_pending">Distance and ETA still being calculated…</string>
+
+    <string name="history_section_title">Recent</string>
+    <string name="settings_history_title">Keep history</string>
+    <string name="settings_history_count">%1$d entries stored on this device</string>
+    <string name="settings_clear_history">Clear history</string>
+    <string name="settings_clear_history_title">Clear history?</string>
+    <string name="settings_clear_history_msg">This deletes the %1$d history entries stored on this device and cannot be undone (Home, Work and saved places are untouched).</string>
+    <string name="settings_clear_history_empty">No history yet</string>
+    <string name="settings_clear_history_done">History cleared</string>
+    <string name="dialog_confirm">OK</string>
+
+    <string name="settings_places_title">My places</string>
+    <string name="settings_local_title">Local data</string>
+    <string name="settings_poi_none">Not set</string>
+    <string name="settings_poi_set">Set</string>
+    <string name="settings_poi_edit">Edit</string>
+    <string name="settings_poi_rename">Rename</string>
+    <string name="settings_poi_relocate">Choose another spot</string>
+    <string name="settings_poi_delete">Delete</string>
+    <string name="settings_poi_clear">Clear</string>
+    <string name="settings_add_place">+ Add a place</string>
+    <string name="settings_place_limit">Up to 10 saved places — delete one before adding</string>
+    <string name="settings_place_name_title">Name this place</string>
+    <string name="settings_place_rename_title">Rename</string>
+    <string name="settings_place_name_hint">Name, 10 characters or fewer</string>
+    <string name="settings_place_name_empty">Enter a name first</string>
+    <string name="settings_place_name_long">The name must be 10 characters or fewer</string>
+    <string name="settings_place_saved">Saved: %1$s</string>
+    <string name="settings_place_deleted">Deleted: %1$s</string>
+    <string name="settings_home_cleared">The “Home” address was cleared</string>
+    <string name="settings_company_cleared">The “Work” address was cleared</string>
+    <string name="title_set_place">Set the address of “%1$s”</string>
+
+    <string name="settings_general_title">General</string>
+    <string name="settings_mainui_title">Home screen</string>
+    <string name="settings_search_pos">Search box position</string>
+    <string name="settings_daynight">Day / night mode</string>
+    <string name="settings_traffic">Traffic layer</string>
+    <string name="settings_strategy">Route preference</string>
+    <string name="settings_navi_orientation">Navigation heading</string>
+    <string name="settings_tilt3d">3D view</string>
+    <string name="settings_tiltgesture">Tilt gesture for 3D</string>
+    <string name="settings_screenbright">Keep screen on while navigating</string>
+    <string name="settings_laneinfo">Lane info</string>
+    <string name="settings_crossshow">Junction zoom view</string>
+    <string name="settings_camerabubble">Speed-camera bubbles and alerts</string>
+    <string name="settings_compass">Compass</string>
+    <string name="settings_broadcast">Guidance detail</string>
+    <string name="settings_textsize">Map text size</string>
+    <string name="settings_textsize_unsupported">Not supported by the SDK</string>
+    <string name="cruise">Cruise</string>
+    <string name="cruise_started">Cruise mode started — exit from the map or with the Back key</string>
+    <string name="locate_btn_desc">Back to my location</string>
+
+    <string name="start_navi_to">Start navigation → %1$s</string>
+    <string name="clear_destination_desc">Clear destination</string>
+    <string name="settings_cruise_desc">Cruise (reports speed cameras and limits along the road)</string>
+    <string name="settings_cruise_button">Start cruise mode</string>
+    <string name="settings_about_title">About</string>
+
+    <string name="waypoint_add">+ Waypoint</string>
+    <string name="waypoint_limit">Up to 5 waypoints — remove one before adding</string>
+    <string name="waypoint_pick_title">Choose a waypoint</string>
+    <string name="waypoint_remove">%1$s ×</string>
+    <string name="waypoint_removed">Waypoint removed: %1$s</string>
+    <string name="waypoint_added">Waypoint added: %1$s</string>
+    <string name="preview_start_my_location">My location</string>
+    <string name="preview_via_summary">%1$d waypoint(s): %2$s</string>
+
+    <string name="route_reverse">⇅ Reverse trip</string>
+    <string name="route_reverse_back">⇅ Outbound trip</string>
+    <string name="navi_preview_arrive">arrive by %1$s</string>
+    <string name="navi_preview_lights">%1$d traffic light(s)</string>
+    <string name="navi_preview_toll">Toll ¥%1$d</string>
+    <string name="route_tag_time_shortest">Fastest</string>
+    <string name="route_tag_distance_shortest">Shortest</string>
+    <string name="chip_distance_meters">%1$d m</string>
+    <string name="chip_distance_km">%1$.1f km</string>
+
+    <string name="settings_language">Language</string>
+    <string name="language_zh">中文</string>
+    <string name="language_en">English</string>
+    <string name="net_offline_title">Navigation needs a connection</string>
+    <string name="net_offline_msg">Both engine start-up and route calculation require the network. No usable connection was detected — check Wi-Fi or mobile data and retry. (Indoors is fine as long as you have a connection: positioning falls back to network/base station; with no connection at all the engine cannot start up.)</string>
+    <string name="net_offline_retry">Retry</string>
+    <string name="net_offline_exit">Back</string>
+    <string name="tip_locate_network_fallback">Satellite positioning failed — retrying with network positioning…</string>
+    <string name="tip_locate_failed_indoor">Location failed (code %1$d): neither satellite nor network positioning worked. Indoors, join Wi-Fi first</string>
+
+    <string-array name="search_position_names">
+        <item>Top (default)</item>
+        <item>Bottom</item>
+    </string-array>
+
+    <string-array name="orientation_names">
+        <item>Heading up (default)</item>
+        <item>North up</item>
+    </string-array>
+
+    <string-array name="broadcast_names">
+        <item>Detailed (default)</item>
+        <item>Concise</item>
+    </string-array>
+
+    <string-array name="day_night_names">
+        <item>Auto (follow system)</item>
+        <item>Day</item>
+        <item>Night</item>
+    </string-array>
+
+    <string-array name="route_strategy_names">
+        <item>Smart recommendation</item>
+        <item>Fastest</item>
+        <item>Avoid congestion</item>
+        <item>Avoid highways</item>
+        <item>Prefer highways</item>
+    </string-array>
+
+    <string name="route_prev">Previous</string>
+    <string name="route_next">Next</string>
+    <string name="route_indicator">Route %1$d/%2$d</string>
+    <string name="route_indicator_label">Route %1$d/%2$d · %3$s</string>
+    <string name="route_pref_title">Route preference</string>
+    <string name="route_pref_label">Preference: %1$s</string>
+    <string name="route_pref_changed">Route preference changed — replanning…</string>
+</resources>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M1.11 R20 首页交互定稿（七批拍板）：
+     未聚焦态只有【搜索框 + 家/公司/自定义位置 chip 行 + 整页地图 + 右下定位钮与设置钮】；
+     聚焦态才出"最近去过"/联想列表；选中目的地后底部滑出控制块（开始导航 + 偏好行）。
+     控件全部紧凑化（R20⑥），地图可见区最大化；搜索块随「搜索框位置」设置整体在顶/底搬移。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 顶部档：搜索块落位处（默认） -->
+    <LinearLayout
+        android:id="@+id/top_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="vertical" />
+
+    <!-- 底部区：底部档时搜索块排在其上；控制块（开始导航+偏好行）仅目的地存在时存在 -->
+    <LinearLayout
+        android:id="@+id/bottom_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <!-- 选中态才显示；无目的地时 GONE=完全不占位（R20 核心原则） -->
+        <LinearLayout
+            android:id="@+id/control_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_panel"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_start"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="@string/start_navi"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- M1.12 B1/B2：途经点行（仅选中态出现）；「＋ 途经点」与每个「名称 ×」由代码渲染 -->
+            <HorizontalScrollView
+                android:id="@+id/waypoint_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/waypoint_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <!-- 偏好快捷行：与预览态同款五档，放在「开始导航」下方（R20⑥/默认拍板 19） -->
+            <HorizontalScrollView
+                android:id="@+id/pref_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/pref_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 搜索块：搜索框 + 小组件 chip 行 + 聚焦态列表，整块随「搜索框位置」两档搬移 -->
+    <LinearLayout
+        android:id="@+id/search_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_panel"
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/destination"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:background="@drawable/bg_field"
+                android:hint="@string/hint_destination"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="40dp"
+                android:textColor="@color/text_main"
+                android:textSize="16sp" />
+
+            <!-- 清除目的地：回到未聚焦态并收回「开始导航」（仅框内有内容时可见） -->
+            <ImageButton
+                android:id="@+id/clear_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="-36dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_chip"
+                android:contentDescription="@string/clear_destination_desc"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 家/公司/自定义位置：小号 chip 一行横滚，固定在搜索框正下方（R20②） -->
+        <HorizontalScrollView
+            android:id="@+id/places_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/places_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/section_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/history_section_title"
+            android:textColor="@color/text_sub"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/tips"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="4dp"
+            android:divider="#11000000"
+            android:dividerHeight="1dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- 右下浮动钮：定位 + 设置（R20⑤顶部小按钮排全部取消，设置收到底部） -->
+    <LinearLayout
+        android:id="@+id/float_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/settings_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/bg_chip"
+            android:contentDescription="@string/settings"
+            android:src="@android:drawable/ic_menu_manage" />
+
+        <ImageButton
+            android:id="@+id/locate_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_chip"
+            android:contentDescription="@string/locate_btn_desc"
+            android:src="@android:drawable/ic_menu_mylocation" />
+    </LinearLayout>
+</FrameLayout>
